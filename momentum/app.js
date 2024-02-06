@@ -129,3 +129,87 @@ const player2 = {
 
 console.log(player2.name);
 player2.sayHello("lynn");
+
+// ===============================================================
+
+/*
+    항상 const를 사용하고, 가끔 let 을 사용 ! var는 절대 사용하지 말 것!
+*/
+
+// ===============================================================
+
+// 과제
+
+const calculator = {
+    add : function(a, b){
+        return a + b;
+    } , 
+    minus : function(a, b){
+        return a - b;
+    }, 
+    divide : function(a, b){
+        return a / b;
+    },
+    powerof : function(a, b){
+        return a ** b;
+    }
+
+}
+
+const plusResult = calculator.add(1, 1);
+const minusResult = calculator.minus(plusResult, 10);
+const divideResult = calculator.divide(8, minusResult);
+const powerofResult = calculator.powerof(divideResult, minusResult);
+
+// console.log는 원하는 데이터를 화면에 뿌려주는 등의 결과를 보여주지 않는다. 즉, 나에게 값을 제공해주지 않는다. 
+// console.log는 콘솔에 결과를 보여주기 위함이다. 
+
+const age = 96;
+function calculatorKrAge(ageOffForeigner){
+    return ageOffForeigner + 2;
+}
+
+const krAge = calculatorKrAge(age);
+console.log(krAge);
+
+// 한번 return 하면 function은 작동을 멈추고 결과값을 return한다!
+
+// ===============================================================
+
+// 08. conditionals(조건문)
+
+// "15" -> 15 (String -> Integer)
+// parseInt()
+
+const age2 = parseInt(prompt("How old are you?"));
+
+// isNaN() : Not a number의 결과값을 boolean값으로 반환 (숫자인 경우, false를 반환 / 문자인 경우, true를 반환)
+
+/*
+console.log(isNaN(age2));
+
+if(isNaN(age2)){
+    console.log("Please write a number");
+} else {
+    console.log("Thank you for writing your age.");
+}
+*/
+
+if(isNaN(age2)){
+    console.log("Please write a number");
+} else if(age2 < 18){
+    console.log("You are too young");
+} else if(age >= 18 && age <= 50){
+    console.log("You can drink");
+} else {
+    console.log("You can't drink");
+}
+
+// 조건문안에서 사용가능한 것들 &&, ||, >=, <, ===, !==
+
+if((a && b) || (a && b) || (x || y)){
+
+}
+
+
+
