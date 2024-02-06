@@ -211,5 +211,39 @@ if((a && b) || (a && b) || (x || y)){
 
 }
 
+// ===============================================================
 
+// 09. HTML코드와 HTML element를 javascript로 접근하기
 
+// Javascript로 HTML을 가져올 수 있음.
+// 그리고 HTML element를 가지고 오지만, HTML 자체를 보여주지 않음.
+// Javascript에서 HTML을 표현하는 Object를 보여줌!!
+
+// document.getElementById() : id로 element를 가져올 수 있음
+const title = document.getElementById("title");
+
+title.innerText = "Got you!";
+
+console.log(title.id);
+console.log(title.className);
+
+const hellos = document.getElementsByClassName("hello");
+console.log(hellos);
+
+const title2 = document.getElementsByTagName("h1");
+
+// element를 가져오는 방법 중 가장 멋진 방법은 querySelector 와 querySelectorAll 이다.
+// querySelector로 가져오는 element가 여러개일 경우, 첫번째 element를 가져옴.
+const title3 = document.querySelector(".hello h1");
+console.log(title3);
+
+const title4 = document.querySelectorAll("div.hello:first-child h1");
+console.log(title4);
+
+function handleTitleClick(){
+    title3.style.color = "blue";
+}
+
+// 이벤트 안에 함수를 넣어줄 때, 함수명() 이렇게 인자를 전달하지 않음
+// 어떤 이벤트가 발생했을 때 javascript가 실행버튼을 대신 눌러주길 바라기 때문! 
+title3.addEventListener("click", handleTitleClick);
