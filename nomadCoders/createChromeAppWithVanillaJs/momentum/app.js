@@ -234,16 +234,114 @@ const title2 = document.getElementsByTagName("h1");
 
 // element를 가져오는 방법 중 가장 멋진 방법은 querySelector 와 querySelectorAll 이다.
 // querySelector로 가져오는 element가 여러개일 경우, 첫번째 element를 가져옴.
+
+/*
 const title3 = document.querySelector(".hello h1");
 console.log(title3);
 
 const title4 = document.querySelectorAll("div.hello:first-child h1");
 console.log(title4);
 
+// ===============================================================
+
+// 10. Event
+
 function handleTitleClick(){
     title3.style.color = "blue";
 }
 
+function handleMouseEnter(){
+    title3.innerText = "Mouse is here!";
+}
+
+function handleMouseLeave(){
+    title3.innerText = "Mouse is gone!";
+}
+
+function handleWindowResize(){
+    document.body.style.backgroundColor = "tomato";
+}
+
+function handleWindowCopy(){
+    alert("copier!");
+}
+
+function handleWindowOffline(){
+    alert("SOS no WIFI!");
+}
+
+function handleWindowOnline(){
+    alert("ALL GOOOOOD!");
+}
+
+*/
+
 // 이벤트 안에 함수를 넣어줄 때, 함수명() 이렇게 인자를 전달하지 않음
 // 어떤 이벤트가 발생했을 때 javascript가 실행버튼을 대신 눌러주길 바라기 때문! 
-title3.addEventListener("click", handleTitleClick);
+
+/*
+title3.addEventListener("click", handleTitleClick);         // title.onclick = handleTitleClick;
+title3.addEventListener("mouseenter", handleMouseEnter);    // title.onmouseenter = handleMouseEnter;
+title3.addEventListener("mouseleave", handleMouseLeave);    // title.onmouseleave = handleMouseLeave;
+
+window.addEventListener("resize", handleWindowResize);
+window.addEventListener("copy", handleWindowCopy);
+window.addEventListener("offline", handleWindowOffline);
+window.addEventListener("online", handleWindowOnline);
+*/
+
+// event를 사용하는 방법
+// 1. title.addEventListener("이벤트", 함수명);
+// 2. title.onclick = handleTitleClick;
+
+// 2번보다 1번을 더 선호하는 이유는 title.removeEventListener를 통해 event Listener를 삭제할 수 있기 때문!
+
+const h1 = document.querySelector("div.hello h1");
+
+/*
+function hadleTitleClick(){
+    const currentColor = h1.style.color;
+    let newColor;
+    if(currentColor === "blue"){
+        newColor = "tomato";
+    } else {
+        newColor = "blue";
+    } 
+    h1.style.color = newColor;
+}
+
+h1.addEventListener("click", hadleTitleClick);
+*/
+
+// 그러나, javascript 상에서 css를 제어하는 것은 옳바르지 않다.
+
+// h1에 .active를 전달하기
+/*
+function handleTitleClick(){
+    const clickedClass = "clicked";
+    if(h1.className === clickedClass){
+        h1.className = "";
+    } else {
+        h1.className = clickedClass;
+    }
+}
+*/
+// 위와 같이 작성할 경우 한가지 문제가 존재!
+// 기존 h1에 class가 존재할 경우, 해당 class를 삭제하고 clicked 라는 클래스만 존재하게됨!
+// 기존에 있던 className은 유지하고, 새로운 className을 추가하는 방법은?
+
+function handleTitleClick(){
+    /*
+    const clickedClass = "clicked";
+    if(h1.classList.contains(clickedClass)){
+        h1.classList.remove(clickedClass);
+    } else {
+        h1.classList.add(clickedClass);
+    }
+    */
+
+    // toggle : classList에 class가 존재하는지 확인 후 있다면 해당 클래스 제거, 없다면 해당 클래스 추가
+    h1.classList.toggle("clicked");
+}
+
+h1.addEventListener("click", handleTitleClick);
