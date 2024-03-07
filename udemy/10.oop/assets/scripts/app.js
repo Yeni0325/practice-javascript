@@ -118,14 +118,16 @@ class ProductItem extends Component{ // 단일 상품 아이템을 렌더링
 }
 
 class ProductList extends Component{
-    products = [];
+    #products = [];
+
     constructor(renderHookId){
-        super(renderHookId);
+        super(renderHookId, false);
+        this.render();
         this.fetchProducts();
     }
 
     fetchProducts(){
-        this.products = [
+        this.#products = [
             new Product(
                 'A Pillow', 
                 'https://www.ikea.com/kr/en/images/products/skogsfraeken-pillow-low__0970237_ph172412_s5.jpg?f=s', 
@@ -143,7 +145,7 @@ class ProductList extends Component{
     }
 
     renderProducts(){
-        for(const prod of this.products){
+        for(const prod of this.#products){
             new ProductItem(prod, 'prod-list'); // 생성자 안에서는 생성 중인 객체를 참조하는데 그것이 new 키워드의 역할 
         }
     }
@@ -152,45 +154,15 @@ class ProductList extends Component{
         this.createRootElement('ul', 'product-list', [
             new ElementAttribute('id', 'prod-list')
         ]);
-        if(this.products && this.products.length > 0){
+        if(this.#products && this.#products.length > 0){
             this.renderProducts();
         }
     }
 }
 
-const productList = {
-    products : [
-        new Product(
-            'A Pillow', 
-            'https://www.ikea.com/kr/en/images/products/skogsfraeken-pillow-low__0970237_ph172412_s5.jpg?f=s', 
-            'A soft pillow!', 
-            19.99
-            ),
-        new Product(
-            'A Carpet', 
-            'https://m.media-amazon.com/images/I/916yp2kvMcL._AC_UF894,1000_QL80_.jpg', 
-            'A carpet which you might like - or not.', 
-            89.99
-            ),
-        // { 
-        //     title : 'A Pillow', 
-        //     imageUrl : 'https://www.ikea.com/kr/en/images/products/skogsfraeken-pillow-low__0970237_ph172412_s5.jpg?f=s', 
-        //     price : 19.99, 
-        //     description : 'A soft pillow!'} , 
-        // { 
-        //     title : 'A Carpet', 
-        //     imageUrl : 'https://m.media-amazon.com/images/I/916yp2kvMcL._AC_UF894,1000_QL80_.jpg', 
-        //     price : 89.99, 
-        //     description : 'A carpet which you might like - or not.'
-        // }
-    ] , 
-    render() {
-    }    
-};
-
-class Shop extends Component{
+class Shop{
     constructor(){
-        super();    
+        this.render();   
     }
 
     render(){
